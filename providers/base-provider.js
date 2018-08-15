@@ -708,7 +708,7 @@ var BaseProvider = /** @class */ (function (_super) {
         return this.ready.then(function () {
             return properties_1.resolveProperties(tx).then(function (tx) {
                 return _this._resolveNames(tx, ['to', 'from']).then(function (tx) {
-                    var params = { transaction: checkTransactionRequest(tx) };
+                    var params = { transaction: checkTransactionRequest(tx), blockNumber: transaction.blockNumber };
                     return _this.perform('call', params).then(function (result) {
                         return bytes_1.hexlify(result);
                     });

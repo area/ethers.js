@@ -22,7 +22,7 @@ var abstract_provider_1 = require("../providers/abstract-provider");
 var abstract_signer_1 = require("../wallet/abstract-signer");
 ///////////////////////////////
 var allowedTransactionKeys = {
-    data: true, from: true, gasLimit: true, gasPrice: true, nonce: true, to: true, value: true
+    data: true, from: true, gasLimit: true, gasPrice: true, nonce: true, to: true, value: true, blockNumber: true
 };
 // Recursively replaces ENS names with promises to resolve the name and
 // stalls until all promises have returned

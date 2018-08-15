@@ -273,7 +273,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
             case 'getTransactionReceipt':
                 return this.send('eth_getTransactionReceipt', [params.transactionHash]);
             case 'call':
-                return this.send('eth_call', [JsonRpcProvider.hexlifyTransaction(params.transaction), 'latest']);
+                return this.send('eth_call', [JsonRpcProvider.hexlifyTransaction(params.transaction), params.blockNumber || 'latest']);
             case 'estimateGas':
                 return this.send('eth_estimateGas', [JsonRpcProvider.hexlifyTransaction(params.transaction)]);
             case 'getLogs':
