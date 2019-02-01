@@ -136,7 +136,7 @@ function runMethod(contract, functionName, estimateOnly) {
             }
         });
         // Send to the contract address (after checking the contract is deployed)
-        tx.to = contract.deployed().then(function () {
+        tx.to = contract.deployed(blockTag).then(function () {
             return contract.addressPromise;
         });
         return resolveAddresses(contract.provider, params, method.inputs).then(function (params) {
@@ -331,7 +331,7 @@ var Contract = /** @class */ (function () {
         });
     }
     // @TODO: Allow timeout?
-    Contract.prototype.deployed = function () {
+    Contract.prototype.deployed = function (blockTag) {
         var _this = this;
         if (!this._deployed) {
             // If we were just deployed, we know the transaction we should occur in
@@ -344,7 +344,7 @@ var Contract = /** @class */ (function () {
                 // @TODO: Once we allow a timeout to be passed in, we will wait
                 // up to that many blocks for getCode
                 // Otherwise, poll for our code to be deployed
-                this._deployed = this.provider.getCode(this.address).then(function (code) {
+                this._deployed = this.provider.getCode(this.address, blockTag).then(function (code) {
                     if (code === '0x') {
                         errors.throwError('contract not deployed', errors.UNSUPPORTED_OPERATION, {
                             contractAddress: _this.address,
